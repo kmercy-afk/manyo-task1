@@ -19,10 +19,10 @@
           <td><%= link_to t('views.tasks.show.title'), task, class: 'show-task' %></td>
           <td><%= link_to t('views.tasks.edit.title'), edit_task_path(task), class: 'edit-task' %></td>
           <td>
-            <%= link_to t('helpers.submit.destroy'), 
-                        task, 
-                        method: :delete, 
-                        data: { confirm: t('confirm.destroy') }, 
+            <%= link_to t('helpers.submit.destroy'),
+                        task,
+                        method: :delete,
+                        data: { confirm: t('confirm.destroy') },
                         class: 'destroy-task' %>
           </td>
         </tr>
@@ -30,10 +30,9 @@
     </tbody>
   </table>
 
-  <%= paginate @tasks %>  <!-- if using kaminari -->
+  <%= paginate @tasks %>
 <% else %>
   <p><%= t('views.tasks.index.no_tasks') %></p>
 <% end %>
 
 <%= link_to t('views.tasks.new.title'), new_task_path, id: 'new-task' %>
-<%= paginate @tasks %>

@@ -1,0 +1,46 @@
+ja:
+  activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        title: タイトル
+        content: 内容
+        created_at: 作成日時
+
+  views:
+    tasks:
+      index:
+        title: タスク一覧ページ
+        no_tasks: まだタスクがありません。作成してください！
+        new_task: タスクを登録する
+      new:
+        title: タスク登録ページ
+        submit: 登録する
+        back: 戻る
+      show:
+        title: タスク詳細ページ
+        edit: 編集する
+        back: 戻る
+      edit:
+        title: タスク編集ページ
+        submit: 更新する
+        back: 戻る
+
+  helpers:
+    submit:
+      create: 登録する
+      update: 更新する
+      destroy: 削除する
+
+  flash:
+    create: タスクを登録しました。
+    update: タスクを更新しました。
+    destroy: タスクを削除しました。
+
+  confirm:
+    destroy: 本当に削除しますか？
+
+  errors:
+    messages:
+      blank: を入力してください
