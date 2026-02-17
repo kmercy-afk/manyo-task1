@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(10)
+    @tasks = Task.all.order(created_at: :desc)
+    @tasks = @tasks.to_a   # ← FORCE execution (convert relation to array)
+    puts "DEBUG: Loaded #{@tasks.count} tasks in controller (array size: #{@tasks.size})"
   end
 
   def show
