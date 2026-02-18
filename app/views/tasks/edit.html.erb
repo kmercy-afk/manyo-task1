@@ -1,9 +1,9 @@
-<h1>Edit Task Page</h1>
+<h1><%= t('views.tasks.edit.title') %></h1>
 
 <% if @task.errors.any? %>
-  <div style="color: red; background-color: #ffe6e6; padding: 10px; margin-bottom: 15px; border: 1px solid red; border-radius: 5px;">
-    <h3 style="margin-top: 0;">Please fix the following errors:</h3>
-    <ul>
+  <div style="color: red; background: #ffe6e6; padding: 15px; margin-bottom: 20px; border: 1px solid red; border-radius: 4px;">
+    <strong><%= pluralize(@task.errors.count, t('errors.messages.error', count: @task.errors.count)) %>:</strong>
+    <ul style="margin: 10px 0 0 20px;">
       <% @task.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -13,18 +13,18 @@
 
 <%= form_with model: @task, local: true do |form| %>
   <div>
-    <%= form.label :title, 'Title Title', id: 'title-title' %>
+    <%= form.label :title, t('activerecord.attributes.task.title'), id: 'title-title' %>
     <%= form.text_field :title %>
   </div>
 
   <div>
-    <%= form.label :content, 'Content', id: 'content' %>
+    <%= form.label :content, t('activerecord.attributes.task.content'), id: 'content' %>
     <%= form.text_area :content %>
   </div>
 
   <div>
-    <%= form.submit 'Update Task', id: 'update-task' %>
+    <%= form.submit t('helpers.submit.update'), id: 'update-task' %>
   </div>
 <% end %>
 
-<%= link_to 'Back', tasks_path, id: 'back' %>
+<%= link_to t('views.tasks.edit.back'), tasks_path, id: 'back' %>

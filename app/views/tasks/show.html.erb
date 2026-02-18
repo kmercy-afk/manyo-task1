@@ -1,19 +1,19 @@
-<h1>Show Task Page</h1>
+<h1><%= t('views.tasks.show.title') %></h1>
 
 <div>
-  <strong id="title-title">Title:</strong>
+  <strong id="title-title"><%= t('activerecord.attributes.task.title') %>:</strong>
   <%= @task.title %>
 </div>
 
 <div>
-  <strong id="content">Content:</strong>
+  <strong id="content"><%= t('activerecord.attributes.task.content') %>:</strong>
   <%= @task.content %>
 </div>
 
 <div>
-  <strong id="created-at">Created at:</strong>
-  <%= @task.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  <strong id="created-at"><%= t('activerecord.attributes.task.created_at') %>:</strong>
+  <%= @task.created_at.in_time_zone.strftime("%Y年%m月%d日 %H:%M") %>
 </div>
 
-<%= link_to 'Edit', edit_task_path(@task), id: 'edit-task' %>
-<%= link_to 'Back', tasks_path, id: 'back' %>
+<%= link_to t('views.tasks.edit.title'), edit_task_path(@task), id: 'edit-task' %>
+<%= link_to t('views.tasks.show.back'), tasks_path, id: 'back' %>
