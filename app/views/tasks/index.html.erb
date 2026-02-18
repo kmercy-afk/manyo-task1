@@ -1,24 +1,36 @@
 <h1 class="tasks-index-page"><%= t('views.tasks.index.title') %></h1>
 
-<p>DEBUG: Tasks count in view: <%= @tasks&.count || 'nil' %></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>内容</th>
-      <th>作成日時</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
+<% if @tasks.any? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= task.title %></td>
-        <td><%= task.content %></td>
-        <td><%= task.created_at.in_time_zone.strftime("%Y年%m月%d日 %H:%M") %></td>
+        <th><%= t('activerecord.attributes.task.title') %></th>
+        <th><%= t('activerecord.attributes.task.content') %></th>
+        <th><%= t('activerecord.attributes.task.created_at') %></th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.content %></td>
+          <td><%= task.created_at.in_time_zone.strftime("%Y年%m月%d日 %H:%M") %></td>
+          <td><%= link_to t('views.tasks.show.title'), task, class: 'show-task' %></td>
+          <td><%= link_to t('views.tasks.edit.title'), edit_task_path(task), class: 'edit-task' %></td>
+          <td>
+            <%= link_to t('helpers.submit.destroy'),
+                        task,
+                        method: :delete,
+                        data: { confirm: t('confirm.destroy') },
+                        class: 'destroy-task' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p><%= t('views.tasks.index.no_tasks') %></p>
+<% end %>
 
 <%= link_to t('views.tasks.new.title'), new_task_path, id: 'new-task' %>
